@@ -1,9 +1,18 @@
 name = "changeloguevara"
 main = "src/index.ts"
-compatibility_date = "2023-11-21"
+compatibility_date = "2023-09-22"
+node_compat = true
 
 # Cron Triggers
 # Docs: https://developers.cloudflare.com/workers/platform/triggers/cron-triggers/
 # Configuration: https://developers.cloudflare.com/workers/wrangler/configuration/#triggers
 [triggers]
 crons = ["* * * * *"] # * * * * * = run every minute
+
+[[d1_databases]]
+binding = "DB"
+database_name = "CH"
+database_id = "46dfca03-e45c-48a5-88ce-ddce6cd5a680"
+
+[vars]
+SERVICE_CONFIG = '{ "allowedDemoDomains" : [ "google.com" ], "knownContributors": [], "knownProducts": [], "notificationServices": [ "slack" ], "notificationDelayMinutes": 0 }'
