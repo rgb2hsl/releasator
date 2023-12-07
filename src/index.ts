@@ -11,40 +11,62 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
+import { PostRelease } from './routes/releases';
+import { OpenAPIRouter } from '@cloudflare/itty-router-openapi';
+import { withAuth } from './middlewares/withAuth';
+import { type Env } from './env';
+import { getTagsList } from './services/github';
+import { type RichRequest } from './types/RichRequest';
+import { withConfig } from './middlewares/withConfig';
 
-export interface Env {
-	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
-	// MY_KV_NAMESPACE: KVNamespace;
-	//
-	// Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
-	// MY_DURABLE_OBJECT: DurableObjectNamespace;
-	//
-	// Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
-	// MY_BUCKET: R2Bucket;
-	//
-	// Example binding to a Service. Learn more at https://developers.cloudflare.com/workers/runtime-apis/service-bindings/
-	// MY_SERVICE: Fetcher;
-	//
-	// Example binding to a Queue. Learn more at https://developers.cloudflare.com/queues/javascript-apis/
-	// MY_QUEUE: Queue;
-	//
-	// Example binding to a D1 Database. Learn more at https://developers.cloudflare.com/workers/platform/bindings/#d1-database-bindings
-	// DB: D1Database
-}
+
+// Create a new router
+const router = OpenAPIRouter()
+
+router.all('*', withAuth, withConfig)
+
+router.post('/api/releases', PostRelease)
+
+router.get(`/api/test`, async (request: RichRequest,  env: Env) => {
+    const d = await getTagsList('rgb2hsl/test-ch-releases-messages', env);
+
+    d?.forEach(tag => { console.log(`there is a tag with name ${tag.name}`); })
+
+    return new Response('Hi', { status: 200 });
+})
+
+// 404 for everything else
+router.all('*', () => new Response('Not Found.', { status: 404 }))
 
 export default {
-	// The scheduled handler is invoked at the interval set in our wrangler.toml's
-	// [[triggers]] configuration.
-	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
-		// A Cron Trigger can make requests to other endpoints on the Internet,
-		// publish to a Queue, query a D1 Database, and much more.
-		//
-		// We'll keep it simple and make an API call to a Cloudflare API:
-		let resp = await fetch('https://api.cloudflare.com/client/v4/ips');
-		let wasSuccessful = resp.ok ? 'success' : 'fail';
+    fetch: router.handle,
 
-		// You could store this result in KV, write to a D1 Database, or publish to a Queue.
-		// In this template, we'll just log the result:
-		console.log(`trigger fired at ${event.cron}: ${wasSuccessful}`);
-	},
+    // The scheduled handler is invoked at the interval set in our wrangler.toml's
+    // [[triggers]] configuration.
+    async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
+        console.log(`cron invoked at ${event.cron}`);
+
+        // URL to which the request is sent
+        // TODO secret and config
+        const url = 'https://hooks.slack.com/services/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';
+
+        // Data to be sent in the request body
+        const data = {
+            text: `Test message with emoji's 🐞, invoked at ${event.cron}`
+        };
+
+        // Create a request with fetch
+        await fetch(url, {
+            method: 'POST', // Specify the method
+            headers: {
+                'Content-Type': 'application/json' // Set the content type
+            },
+            body: JSON.stringify(data) // Convert the JavaScript object to a JSON string
+        })
+            .then(data => {
+                console.log(`message successfully delivered at ${event.cron}`, data);
+            }, error => {
+                console.error(`error at ${event.cron}`, error);
+            })
+    }
 };
