@@ -11,7 +11,7 @@ crons = ["* * * * *"] # * * * * * = run every minute
 
 [[d1_databases]]
 binding = "DB"
-database_name = "CH"
+database_name = "RE"
 database_id = "46dfca03-e45c-48a5-88ce-ddce6cd5a680"
 
 [vars]
