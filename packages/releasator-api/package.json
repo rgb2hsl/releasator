@@ -1,0 +1,12 @@
+{
+  "name": "releasator-api",
+  "version": "0.0.1",
+  "description": "Releasator API CF Worker",
+  "author": "rgb2hsl",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "db:schema": "wrangler d1 execute RE --local --file=sql/schema.sql"
+  }
+}
