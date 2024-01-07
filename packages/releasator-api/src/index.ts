@@ -18,24 +18,24 @@ import {type Env} from "./env";
 import {type RichRequest} from "./types/RichRequest";
 import {createConfig, withConfig} from "./middlewares/withConfig";
 import {generateEditHash} from "./helpers/generateEditHash";
-import {createCors, withParams} from "itty-router";
+import {withParams} from "itty-router";
 import {createSlackPayload, sendSlackNotification} from "./services/slack";
 import {offsetUTCDate} from "./helpers/transformDateFromDB";
 import {UTCDate} from "@date-fns/utc";
 import {getDomainsData} from "./helpers/getDomainsData";
 import {sqliteDate} from "releasator-types";
 import {getQueuedReleaseObjects, updateReleaseObjectPostedAt} from "./domains/ReleaseObjectsDomain";
+import {createCors} from "./helpers/createCors";
 
 
 // Create a new router
 const router = OpenAPIRouter();
 
 const {preflight, corsify} = createCors({
-    methods: ["GET", "PUT", "POST"],
-    origins: ["http://localhost:8080"]
+    methods: ["GET", "PUT", "POST"]
 });
 
-router.all("*", preflight, withConfig);
+router.all("*", withConfig, preflight);
 
 router.post("/api/releases", withAuth, PostRelease);
 

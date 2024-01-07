@@ -5,7 +5,7 @@
     "author": "rgb2hsl",
     "scripts": {
         "deploy": "wrangler deploy",
-        "dev": "wrangler dev",
+        "dev": "wrangler dev --test-scheduled",
         "start": "wrangler dev",
         "db:schema:local": "wrangler d1 execute RE --local --file=sql/schema.sql",
         "db:select:releases:local": "wrangler d1 execute RE --local --command \"SELECT id, editHash, queuedTo, postedAt FROM releases\"",

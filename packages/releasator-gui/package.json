@@ -28,6 +28,8 @@
     },
     "scripts": {
         "build": "webpack",
-        "dev": "webpack serve"
+        "dev": "webpack serve",
+        "setup": "wrangler pages project create releasator-gui --production-branch=master",
+        "deploy": "npm run build && wrangler pages deploy ./dist --project-name=releasator-gui"
     }
 }

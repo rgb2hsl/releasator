@@ -31,8 +31,7 @@ export async function insertReleaseObject(releaseObject: ReleaseObjectToInsert, 
     const nowWithOffset = offsetUTCDate(new UTCDate(), hoursOffset);
 
     const createdAt = sqliteDate(nowWithOffset);
-    nowWithOffset.setMinutes(nowWithOffset.getMinutes() + request.serviceConfig.notificationDelayMinutes);
-    const queuedTo = sqliteDate(addMinutes(nowWithOffset, 30));
+    const queuedTo = sqliteDate(addMinutes(nowWithOffset, request.serviceConfig.notificationDelayMinutes));
     const editHash = await generateEditHash(releaseObject.repo, releaseObject.head.name);
 
     const releaseObjectToParse = {id, createdAt, queuedTo, postedAt: null, editHash, ...releaseObject};

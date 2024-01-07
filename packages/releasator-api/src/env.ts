@@ -5,6 +5,7 @@ export interface Env {
     SLACK_ADMIN_CHANNEL_WEBHOOK?: string;
     SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK?: string;
 
+    GUI_ROOT: string;
     SERVICE_CONFIG: string;
 
     // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/

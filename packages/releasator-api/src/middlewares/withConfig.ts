@@ -9,7 +9,12 @@ export function createConfig(env: Env) {
     let config: Config;
 
     // TODO try catch
-    const configParseResult = ConfigSchema.safeParse(JSON.parse(env.SERVICE_CONFIG));
+    const rawConfigParsed = JSON.parse(env.SERVICE_CONFIG);
+
+    const configParseResult = ConfigSchema.safeParse({
+        ...rawConfigParsed,
+        allowedOrigins: [ env.GUI_ROOT ]
+    });
 
     if (!configParseResult.success) {
         const validationError = fromZodError(configParseResult.error as ZodError);

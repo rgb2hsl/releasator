@@ -1,6 +1,7 @@
 import {z} from "zod";
 
 export const ConfigSchema = z.object({
+    allowedOrigins: z.array(z.string()),
     allowedDemoDomains: z.array(z.string()),
     knownContributors: z.array(z.object({
         githubLogin: z.string(),
