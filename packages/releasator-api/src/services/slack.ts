@@ -144,8 +144,7 @@ export async function sendSlackNotification(release: ReleaseObject, config: Conf
             type: "section",
             text: {
                 type: "mrkdwn",
-                // TODO link to a cf pages ui
-                text: `<http://localhost:8080/release/${release.id}/edit/${release.editHash}|Edit>`
+                text: `This will be posted at ${release.queuedTo} UTC. <${config.guiRoot}/release/${release.id}/edit/${release.editHash}|Edit it>.`
             }
         });
     }

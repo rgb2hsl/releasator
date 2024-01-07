@@ -24,7 +24,7 @@ export const createCors = (options: Omit<CorsOptions, 'origins'> = {}) => {
         const origin = r.headers.get('origin') ?? ''
 
         // set allowOrigin globally
-        allowOrigin = r.serviceConfig.allowedOrigins.includes(origin) && { 'Access-Control-Allow-Origin': origin }
+        allowOrigin = r.serviceConfig.guiRoot === origin && { 'Access-Control-Allow-Origin': origin }
 
         // Check if method is OPTIONS.
         if (r.method === 'OPTIONS') {

@@ -13,7 +13,7 @@ export function createConfig(env: Env) {
 
     const configParseResult = ConfigSchema.safeParse({
         ...rawConfigParsed,
-        allowedOrigins: [ env.GUI_ROOT ]
+        guiRoot: env.GUI_ROOT
     });
 
     if (!configParseResult.success) {
