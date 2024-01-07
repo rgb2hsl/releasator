@@ -35,6 +35,8 @@ module.exports = {
                 {from: "../../node_modules/react95/dist/fonts", to: "./fonts"}
             ]
         }),
-        new Dotenv()
+        new Dotenv({
+            path: `./.env${env === "production" ? "" : ".development"}`
+        })
     ]
 };

@@ -27,7 +27,7 @@
         "webpack-dev-server": "^4.15.1"
     },
     "scripts": {
-        "build": "webpack",
+        "build": "webpack --env production",
         "dev": "webpack serve",
         "setup": "wrangler pages project create releasator-gui --production-branch=master",
         "deploy": "npm run build && wrangler pages deploy ./dist --project-name=releasator-gui"
