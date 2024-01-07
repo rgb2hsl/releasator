@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="cors logs added">
-      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/.env.development" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-gui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-gui/package.json" afterDir="false" />
+    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="dev env example">
       <change beforePath="$PROJECT_DIR$/packages/releasator-gui/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-gui/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +64,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704636758769</updated>
-      <workItem from="1704636759880" duration="7427000" />
+      <workItem from="1704636759880" duration="7520000" />
     </task>
     <task id="LOCAL-00001" summary="readme improvements">
       <option name="closed" value="true" />
@@ -133,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704645221311</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="dev env example">
+      <option name="closed" value="true" />
+      <created>1704646196620</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1704646196620</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +153,7 @@
     <MESSAGE value="setting up cors properly in the .env" />
     <MESSAGE value="correct link to GUI" />
     <MESSAGE value="cors logs added" />
-    <option name="LAST_COMMIT_MESSAGE" value="cors logs added" />
+    <MESSAGE value="dev env example" />
+    <option name="LAST_COMMIT_MESSAGE" value="dev env example" />
   </component>
 </project>
