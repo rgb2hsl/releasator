@@ -6,9 +6,20 @@ _"Revolutinary" changelog notification tool. The name is too long, so I'll be us
 
 Re is designed to be deployed as CF workers, so some prequirements needed.
 
-#### Secrets
+Steps to set up:
 
-Add `AUTH_SUPER_TOKEN` secret to your worker's env variables. It's a master token used for authentication. Simply use Bearer scheme with all your requests.
+1. Fork this repo
+2. Edit `packages/releasator-api/wrangler.toml` for your CF Worker:
+   1. Create DB and add `d1_databases` bindings
+   2. Edit `SERVICE_CONFIG`
+3. Upload and deploy your worker with `npm run deploy -w packages/releasator-api`
+4. Add secrets to the deployed worker:
+   1. `AUTH_SUPER_TOKEN` is token you should use with Bearer auth to push releases from GitHub workflow
+   2. `GITHUB_TOKEN` is token allowed to read from repos you wish to push releases from
+   3. `SLACK_ADMIN_CHANNEL_WEBHOOK` is a webhook for posting service previews of release messsages
+   4. `SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK` is the same, but for "production" posting
+5. You can check that everything goes fine by checking logs of a worker — a cronjob should run every minute and tell you that there is no releases queued for posting
+6. Deploy GUI o CF pages
 
 #### D1 Database
 
