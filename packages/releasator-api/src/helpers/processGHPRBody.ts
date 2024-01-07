@@ -7,7 +7,7 @@ export function processGHPRBody(body: string, allowedDemoDomains: string[]) {
 
     const jiraRegex = /https:\/\/[a-zA-Z0-9.-]+\/browse\/[A-Z]+-\d+/g;
     const demoRegex = /https:\/\/[a-zA-Z0-9/._-]+/g;
-    const allowedDemoRegex = new RegExp(`https://[a-zA-Z0-9.-]?(${allowedDemoDomains.join('|')})/[a-zA-Z0-9/._-]?`, 'g');
+    const allowedDemoRegex = new RegExp(`https://[a-zA-Z0-9.-]?(${allowedDemoDomains.join("|")})/[a-zA-Z0-9/._-]?`, "g");
 
     const remainingParagraphs = paragraphs.filter(paragraph => {
         // Extracting JIRA links

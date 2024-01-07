@@ -1,10 +1,10 @@
-import { type Config } from '../config/ConfigSchema';
-import { type ReleaseObject } from '../types/ReleaseObject';
-import { type KnownBlock } from '@slack/types';
+import {type Config} from "../config/ConfigSchema";
+import {type ReleaseObject} from "releasator-types";
+import {type KnownBlock} from "@slack/types";
 
-export function createSlackPayload (release: ReleaseObject, config: Config) {
+export function createSlackPayload(release: ReleaseObject, config: Config) {
     const product = config.knownProducts.find(p => p.repoString === release.repo);
-    const prepTitle = `*${product ? product.name : release.repo}* ${release.head.name} released 🚀`
+    const prepTitle = `*${product ? product.name : release.repo}* ${release.head.name} released 🚀`;
 
     const changesBlocks: KnownBlock[] = [];
 
@@ -34,20 +34,20 @@ export function createSlackPayload (release: ReleaseObject, config: Config) {
 
         // demoUrls can be empty
         if (change.demoUrls.length > 2) {
-            details = `Check it out ${change.demoUrls.slice(0, -2).map(url => `<${url}|here>`).join(", ")}<${change.demoUrls[change.demoUrls.length-2]}|here> and <${change.demoUrls[change.demoUrls.length-1]}|here>`;
+            details = `Check it out ${change.demoUrls.slice(0, -2).map(url => `<${url}|here>`).join(", ")}<${change.demoUrls[change.demoUrls.length - 2]}|here> and <${change.demoUrls[change.demoUrls.length - 1]}|here>`;
         } else if (change.demoUrls.length === 2) {
             details = `Check it out <${change.demoUrls[0]}|here> and <${change.demoUrls[1]}|here>`;
         } else if (change.demoUrls.length === 1) {
             details = `Check it out <${change.demoUrls[0]}|here>`;
         } else {
-            details = '';
+            details = "";
         }
 
         // prUrl is always present
         if (details) {
-            details = `${details}. Also see <${change.prUrl}|PR ${change.prNumber}> for detailed notes`
+            details = `${details}. Also see <${change.prUrl}|PR ${change.prNumber}> for detailed notes`;
         } else {
-            details = `See <${change.prUrl}|PR ${change.prNumber}> for detailed notes`
+            details = `See <${change.prUrl}|PR ${change.prNumber}> for detailed notes`;
         }
 
         // jiraUrls can be empty
@@ -77,11 +77,11 @@ export function createSlackPayload (release: ReleaseObject, config: Config) {
         const knownContributor = config.knownContributors.find(kc => kc.githubLogin === c);
 
         if (knownContributor?.slackUID) {
-            return `<@${knownContributor.slackUID}>`
+            return `<@${knownContributor.slackUID}>`;
         } else {
-            return c
+            return c;
         }
-    })
+    });
 
     const payload: { blocks: KnownBlock[] } = {
         blocks: [
@@ -126,39 +126,75 @@ export function createSlackPayload (release: ReleaseObject, config: Config) {
     return payload;
 }
 
-export async function sendAdminSlackNotification(release: ReleaseObject, config: Config) {
+export async function sendSlackNotification(release: ReleaseObject, config: Config, production?: boolean) {
+    const service = production !== true;
+
     if (!config.slackService) {
-        return { error: "Slack service isn't configured" };
+        return {error: "Slack service isn't configured"};
     }
 
     const payload = createSlackPayload(release, config);
 
-    try {
-        const response = await fetch(config.slackService?.adminChannelWebhook, {
-            method: 'POST', // Specify the method
-            headers: {
-                'Content-Type': 'application/json',
-                'User-Agent': 'changeloguevara/1.0',
-            },
-            body: JSON.stringify(payload) // Convert the JavaScript object to a JSON string
+    if (service) {
+        payload.blocks.push({
+            "type": "divider"
         });
 
-        if (response.status === 200) {
-            console.info(`sendAdminSlackNotification: message successfully delivered`);
-            return { success: "success" };
-        } else if (response.status > 200) {
-            const text = await response.text();
-            const error = `sendAdminSlackNotification fetched response status ${response.status}: ${text}`;
-            return { error };
+        payload.blocks.push({
+            type: "section",
+            text: {
+                type: "mrkdwn",
+                // TODO link to a cf pages ui
+                text: `<http://localhost:8080/release/${release.id}/edit/${release.editHash}|Edit>`
+            }
+        });
+    }
+
+    const chunks = [];
+    for (let i = 0; i < payload.blocks.length; i += 50) {
+        chunks.push({
+            blocks: payload.blocks.slice(i, i + 50)
+        });
+    }
+
+    const results = [];
+
+    for (const chunk of chunks) {
+        try {
+
+            const response = await fetch(service ? config.slackService.adminChannelWebhook : config.slackService.notificationsChannelWebhook, {
+                method: "POST", // Specify the method
+                headers: {
+                    "Content-Type": "application/json",
+                    "User-Agent": "releasator-api/1.0"
+                },
+                body: JSON.stringify(chunk) // Convert the JavaScript object to a JSON string
+            });
+
+            if (response.status === 200) {
+                console.info(`sendAdminSlackNotification: message successfully delivered`);
+                results.push({chunk, success: true});
+            } else if (response.status > 200) {
+                const text = await response.text();
+                const error = `sendAdminSlackNotification fetched response status ${response.status}: ${text}`;
+                console.error(error);
+                results.push({chunk, success: false, error});
+            }
+        } catch (e) {
+            const error = `sendAdminSlackNotification: error fetching, ${JSON.stringify(e)}`;
+            console.error(error);
+            results.push({chunk, success: false, error});
         }
+    }
 
-        console.log("---");
-        console.log(JSON.stringify({ text: payload }));
-        console.log("---");
+    const failed = results.filter(r => !r.success);
+    if (failed.length) console.error(`createSlackPayload: sending ${failed.length} chunks failed with errors: ${failed.map(f => f.error).join(", ")}`);
 
-    } catch (e) {
-        const error = `sendAdminSlackNotification: error fetching, ${JSON.stringify(e)}`;
-        console.info(error);
-        return { error };
+    const successfull = results.filter(r => r.success);
+    if (successfull.length) console.info(`createSlackPayload: sending ${successfull.length} chunks successfull`);
+
+    return {
+        failed,
+        successfull
     }
 }

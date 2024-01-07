@@ -1,0 +1,10 @@
+{
+    "name": "releasator-types",
+    "version": "0.0.1",
+    "description": "Releasator validation schemes and types",
+    "author": "rgb2hsl",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc"
+    }
+}

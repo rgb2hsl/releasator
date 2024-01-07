@@ -1,7 +1,6 @@
-name = "changeloguevara"
+name = "releasator"
 main = "src/index.ts"
 compatibility_date = "2023-09-22"
-node_compat = true
 
 # Cron Triggers
 # Docs: https://developers.cloudflare.com/workers/platform/triggers/cron-triggers/
@@ -15,4 +14,5 @@ database_name = "RE"
 database_id = "8afbd76c-b2ef-4f31-86ab-d6eb82a33833"
 
 [vars]
-SERVICE_CONFIG = '{ "allowedDemoDomains" : [ "google.com" ], "knownContributors": [], "knownProducts": [], "notificationServices": [ "slack" ], "notificationDelayMinutes": 0 }'
+SERVICE_CONFIG = '{ "allowedDemoDomains" : [ "google.com" ], "knownContributors": [ { "githubLogin": "rgb2hsl", "slackUID": "U038LB8T87N" } ], "knownProducts": [], "notificationServices": [ "slack" ], "notificationDelayMinutes": 0 }'
+DB_HOURS_OFFSET = 0

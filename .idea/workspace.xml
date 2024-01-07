@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="a cople of things (sorry)">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-api/src/domains/ReleaseObjectsDomain.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/generateEditHash.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/getDomainsData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/transformDateFromDB.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/GlobalStyles.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/CatchError.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/Container.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/ErrorHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/FlexCol.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/FlexRow.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/HTTPErrorLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/InputGroup.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/Modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/ScheduleBarGrid.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/TextInputWrapper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/releaseEditor/Countdown.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/releaseEditor/DateEditor.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/releaseEditor/ErrorsDisplay.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/components/releaseEditor/StringsArrayEditor.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/config/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/fonts.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/router.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/routes/PageReleaseEdit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/routes/PageRoot.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/src/types/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/static/fonts.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/static/win95fade.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/webpack.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/GhTag.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/Ref.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/RefSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseChange.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseNotes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseNotesSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseObject.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseObjectSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseObjectStored.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseObjectStoredSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseObjectToInsert.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseStub.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/SQLiteDatetime.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/api/ValidationErrorResponseSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/api/ValidationErrorSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/getRefTagListSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/getTagListSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ghCommitComitSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ghCommitSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ghCompareSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ghPullRequestSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/ghUserWithLoginSchema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/helpers/sqliteDate.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/releasator-types/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/sql/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/config/ConfigSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/config/ConfigSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/env.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/env.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/helpers/extractJiraIssueIdFromURL.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-types/src/helpers/extractJiraIssueIdFromURL.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/helpers/getPreviousVersionTag.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/getPreviousVersionTag.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/helpers/isValidGitHubRepoString.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/isValidGitHubRepoString.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/helpers/processGHPRBody.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/processGHPRBody.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/middlewares/withAuth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/middlewares/withAuth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/middlewares/withConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/middlewares/withConfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/routes/releases.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/routes/releases.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/services/github.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/services/github.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/Ref.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/RefSchema.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/ReleaseChange.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/ReleaseChangeSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseChangeSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/ReleaseNotes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/ReleaseNotesSchema.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/ReleaseObject.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/ReleaseObjectSchema.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/ReleaseStub.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/ReleaseStubSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-types/src/ReleaseStubSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/RepoStringSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-types/src/RepoStringSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/RichRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/types/RichRequest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/TagNameSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-types/src/TagNameSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/github/api/GhRefTag.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-types/src/GhRefTag.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/github/api/GhTag.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/types/github/api/repos/gitRefsTags.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/types/github/api/repos/gitRefsTags.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2ad7mAOHDNLNCHUVTxRB5PwLiEG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/wolfe/projects/p2p/releasator",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "ts.external.directory.path": "/Users/wolfe/projects/p2p/releasator/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="" />
+      <created>1704636758769</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704636758769</updated>
+      <workItem from="1704636759880" duration="845000" />
+    </task>
+    <task id="LOCAL-00001" summary="readme improvements">
+      <option name="closed" value="true" />
+      <created>1704636799773</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1704636799773</updated>
+    </task>
+    <task id="LOCAL-00002" summary="readme eslint rules">
+      <option name="closed" value="true" />
+      <created>1704636908653</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1704636908653</updated>
+    </task>
+    <task id="LOCAL-00003" summary="idea setup #2">
+      <option name="closed" value="true" />
+      <created>1704637041785</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704637041785</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="readme improvements" />
+    <MESSAGE value="readme eslint rules" />
+    <MESSAGE value="idea setup #2" />
+    <MESSAGE value="a cople of things (sorry)" />
+    <option name="LAST_COMMIT_MESSAGE" value="a cople of things (sorry)" />
+  </component>
+</project>
