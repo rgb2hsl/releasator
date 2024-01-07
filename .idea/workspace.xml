@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="setting up cors properly in the .env">
+    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="correct link to GUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/config/ConfigSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/config/ConfigSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/helpers/createCors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/createCors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/middlewares/withConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/middlewares/withConfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704636758769</updated>
-      <workItem from="1704636759880" duration="5943000" />
+      <workItem from="1704636759880" duration="6469000" />
     </task>
     <task id="LOCAL-00001" summary="readme improvements">
       <option name="closed" value="true" />
@@ -114,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704644015678</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="correct link to GUI">
+      <option name="closed" value="true" />
+      <created>1704644682428</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704644682428</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +132,7 @@
     <MESSAGE value="a cople of things (sorry)" />
     <MESSAGE value="idea weaks" />
     <MESSAGE value="setting up cors properly in the .env" />
-    <option name="LAST_COMMIT_MESSAGE" value="setting up cors properly in the .env" />
+    <MESSAGE value="correct link to GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="correct link to GUI" />
   </component>
 </project>

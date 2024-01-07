@@ -7,14 +7,14 @@
         "deploy": "wrangler deploy",
         "dev": "wrangler dev --test-scheduled",
         "start": "wrangler dev",
+        "db:schema": "wrangler d1 execute RE --file=sql/schema.sql",
         "db:schema:local": "wrangler d1 execute RE --local --file=sql/schema.sql",
-        "db:select:releases:local": "wrangler d1 execute RE --local --command \"SELECT id, editHash, queuedTo, postedAt FROM releases\"",
         "db:select:releases": "wrangler d1 execute RE --command \"SELECT id, editHash, queuedTo, postedAt FROM releases\"",
+        "db:select:releases:local": "wrangler d1 execute RE --local --command \"SELECT id, editHash, queuedTo, postedAt FROM releases\"",
         "db:delete:releases:local": "wrangler d1 execute RE --local --command \"DELETE FROM releases WHERE queuedTo != '2023-12-21 15:13:42'\"",
         "db:datetime:local": "wrangler d1 execute RE --local --command \"SELECT datetime('now', 'utc')\"",
         "db:datetime": "wrangler d1 execute RE --command \"SELECT datetime('now', 'utc')\"",
-        "db:datetime:debug": "wrangler d1 execute RE --local --command \"SELECT datetime('now', 'utc') < '2023-12-21 10:35:44'\"",
-        "db:schema": "wrangler d1 execute RE --file=sql/schema.sql"
+        "db:datetime:debug": "wrangler d1 execute RE --local --command \"SELECT datetime('now', 'utc') < '2023-12-21 10:35:44'\""
     },
     "dependencies": {
         "@cloudflare/itty-router-openapi": "^1.0.5",

@@ -24,6 +24,11 @@ export const createCors = (options: Omit<CorsOptions, 'origins'> = {}) => {
         const origin = r.headers.get('origin') ?? ''
 
         // set allowOrigin globally
+        const allowedOrigin = r.serviceConfig.guiRoot === origin;
+
+        if (!allowedOrigin) console.info(`preflight FAILED. tried to request from ${origin}, but guiRoot is ${r.serviceConfig.guiRoot}`);
+        else console.info(`preflight OK from ${origin}`);
+
         allowOrigin = r.serviceConfig.guiRoot === origin && { 'Access-Control-Allow-Origin': origin }
 
         // Check if method is OPTIONS.
