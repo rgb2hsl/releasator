@@ -4,6 +4,7 @@ import {type KnownBlock} from "@slack/types";
 
 export function createSlackPayload(release: ReleaseObject, config: Config) {
     const product = config.knownProducts.find(p => p.repoString === release.repo);
+    // TODO product website url insertion
     const prepTitle = `*${product ? product.name : release.repo}* ${release.head.name} released 🚀`;
 
     const changesBlocks: KnownBlock[] = [];

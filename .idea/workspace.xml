@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="proper webpack env handling">
+    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="tried to fix eslint but hz">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-gui/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-gui/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704636758769</updated>
-      <workItem from="1704636759880" duration="9207000" />
+      <workItem from="1704636759880" duration="12653000" />
     </task>
     <task id="LOCAL-00001" summary="readme improvements">
       <option name="closed" value="true" />
@@ -158,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704647325192</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="tried to fix eslint but hz">
+      <option name="closed" value="true" />
+      <created>1704648586831</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1704648586831</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +185,7 @@
     <MESSAGE value="dev env example" />
     <MESSAGE value="opps" />
     <MESSAGE value="proper webpack env handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="proper webpack env handling" />
+    <MESSAGE value="tried to fix eslint but hz" />
+    <option name="LAST_COMMIT_MESSAGE" value="tried to fix eslint but hz" />
   </component>
 </project>
