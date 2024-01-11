@@ -50,14 +50,14 @@ export class GetQueuedReleases extends OpenAPIRoute<RichRequest> {
 }
 
 
-interface GetReleaseByIdParams extends RequestWithConfig {
+interface GetReleaseByIdForEditParams extends RequestWithConfig {
     params?: {
         id?: string;
         token?: string;
     };
 }
 
-export class GetReleaseById extends OpenAPIRoute<RichRequest> {
+export class GetReleaseByIdForEdit extends OpenAPIRoute<RichRequest> {
     static schema: OpenAPIRouteSchema = {
         responses: {
             "200": {
@@ -75,7 +75,7 @@ export class GetReleaseById extends OpenAPIRoute<RichRequest> {
         }
     };
 
-    async handle(request: GetReleaseByIdParams, env: Env, context: ExecutionContext) {
+    async handle(request: GetReleaseByIdForEditParams, env: Env, context: ExecutionContext) {
         const id = request.params?.id;
         const token = request.params?.token;
 
@@ -90,6 +90,11 @@ export class GetReleaseById extends OpenAPIRoute<RichRequest> {
         if (getResult.success) {
 
             if (token === getResult.data.editHash) {
+                // disallowing getting already posted releases
+                if (getResult.data.postedAt) {
+                    return new Response("Method Not Allowed", {status: 405});
+                }
+
                 return new Response(JSON.stringify(getResult.data), {status: 200});
             } else {
                 return new Response("Unauthorised", {status: 401});
@@ -302,14 +307,14 @@ export class PostRelease extends OpenAPIRoute<RichRequest> {
     }
 }
 
-interface PuTReleaseByIdParams extends RequestWithConfig {
+interface PuTReleaseByIdFromEditParams extends RequestWithConfig {
     params?: {
         id?: string;
         token?: string;
     };
 }
 
-export class PutReleaseById extends OpenAPIRoute<RichRequest> {
+export class PutReleaseByIdFromEdit extends OpenAPIRoute<RichRequest> {
     static schema: OpenAPIRouteSchema = {
         responses: {
             "200": {
@@ -320,7 +325,7 @@ export class PutReleaseById extends OpenAPIRoute<RichRequest> {
         requestBody: ReleaseObjectSchema
     };
 
-    async handle(request: PuTReleaseByIdParams, env: Env, context: ExecutionContext, data: { body: ReleaseObject }) {
+    async handle(request: PuTReleaseByIdFromEditParams, env: Env, context: ExecutionContext, data: { body: ReleaseObject }) {
         const id = request.params?.id;
         const token = request.params?.token;
 
@@ -340,6 +345,11 @@ export class PutReleaseById extends OpenAPIRoute<RichRequest> {
                 const insertResult = await updateReleaseObject(data.body, env);
 
                 if (insertResult.success) {
+                    // disallowing putting already posted releases
+                    if (getResult.data.postedAt) {
+                        return new Response("Method Not Allowed", {status: 405});
+                    }
+
                     return new Response(JSON.stringify(insertResult.data), {status: 200});
                 } else {
                     return new Response("Something went wrong", {status: 500});

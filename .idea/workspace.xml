@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="wrangler.toml is now ignored">
-      <change afterPath="$PROJECT_DIR$/packages/releasator-api/example-wrangler.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/emojize.ts" afterDir="false" />
+    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="regexps for processing PRs body altered, amojis added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/helpers/processGHPRBody.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/processGHPRBody.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/routes/releases.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/routes/releases.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +78,7 @@
       <updated>1704636758769</updated>
       <workItem from="1704636759880" duration="22481000" />
       <workItem from="1704968356477" duration="380000" />
-      <workItem from="1704968743763" duration="2932000" />
+      <workItem from="1704968743763" duration="3749000" />
     </task>
     <task id="LOCAL-00001" summary="readme improvements">
       <option name="closed" value="true" />
@@ -206,7 +200,31 @@
       <option name="project" value="LOCAL" />
       <updated>1704969633066</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="wrangler.toml example added and readme altered">
+      <option name="closed" value="true" />
+      <created>1704972334372</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1704972334372</updated>
+    </task>
+    <task id="LOCAL-00017" summary="wrangler.toml deleted">
+      <option name="closed" value="true" />
+      <created>1704972449101</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1704972449101</updated>
+    </task>
+    <task id="LOCAL-00018" summary="regexps for processing PRs body altered, amojis added">
+      <option name="closed" value="true" />
+      <created>1704972514617</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1704972514617</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +256,9 @@
     <MESSAGE value="tried to fix eslint but hz" />
     <MESSAGE value="idea" />
     <MESSAGE value="wrangler.toml is now ignored" />
-    <option name="LAST_COMMIT_MESSAGE" value="wrangler.toml is now ignored" />
+    <MESSAGE value="wrangler.toml example added and readme altered" />
+    <MESSAGE value="wrangler.toml deleted" />
+    <MESSAGE value="regexps for processing PRs body altered, amojis added" />
+    <option name="LAST_COMMIT_MESSAGE" value="regexps for processing PRs body altered, amojis added" />
   </component>
 </project>

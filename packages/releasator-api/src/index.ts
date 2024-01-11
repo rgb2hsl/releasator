@@ -11,7 +11,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-import {GetQueuedReleases, GetReleaseById, PostRelease, PutReleaseById} from "./routes/releases";
+import {GetQueuedReleases, GetReleaseByIdForEdit, PostRelease, PutReleaseByIdFromEdit} from "./routes/releases";
 import {OpenAPIRouter} from "@cloudflare/itty-router-openapi";
 import {withAuth} from "./middlewares/withAuth";
 import {type Env} from "./env";
@@ -39,9 +39,9 @@ router.all("*", withConfig, preflight);
 
 router.post("/api/releases", withAuth, PostRelease);
 
-router.put("/api/releases/:id/:token", withParams, PutReleaseById);
+router.put("/api/releases/:id/:token", withParams, PutReleaseByIdFromEdit);
 
-router.get("/api/releases/:id/:token", withParams, GetReleaseById);
+router.get("/api/releases/:id/:token", withParams, GetReleaseByIdForEdit);
 
 router.get("/api/releases/queued", withAuth, GetQueuedReleases);
 
