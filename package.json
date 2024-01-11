@@ -29,6 +29,7 @@
     "workspaces": [
         "packages/releasator-api",
         "packages/releasator-gui",
-        "packages/releasator-types"
+        "packages/releasator-types",
+        "packages/releasator-gh-workflow"
     ]
 }

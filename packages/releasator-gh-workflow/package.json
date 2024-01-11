@@ -1,0 +1,6 @@
+{
+    "name": "releasator-gh-workflow",
+    "version": "0.0.1",
+    "description": "Example GH workflow",
+    "author": "rgb2hsl"
+}

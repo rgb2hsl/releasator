@@ -1,0 +1,36 @@
+name: Releasator
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  sendPostRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract tag name
+        id: get_tag
+        run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+
+      - name: Extract repo name
+        id: get_repo
+        run: echo "::set-output name=repo::${GITHUB_REPOSITORY}"
+
+      - name: Send POST request
+        uses: fjogeleit/http-request-action@master
+        with:
+          silent: true
+          url: 'https://YOUR-API-ROOT' # change this with your API root url
+          method: 'POST'
+          timeout: 120000
+          contentType: 'application/json'
+          bearerToken: ${{ secrets.RELEASATOR_TOKEN }}
+          data: >
+            {
+              "repo": "${{ steps.get_repo.outputs.repo }}",
+              "head": {
+                "type": "tag",
+                "name": "${{ steps.get_tag.outputs.tag }}"
+              }
+            }

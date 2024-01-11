@@ -27,7 +27,11 @@ SLACK_ADMIN_CHANNEL_WEBHOOK = '' # provide with webhook allowed to send messages
 SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK = '' # same but for service admins, will post release notes right after creation with and edit link
 
 # non-secret vars below
-GUI_ROOT = '' # url to a deployed relesator GUI
+
+# url to a deployed relesator GUI, set it to any correct value like `https://my-releasator-gui.your-cf-profile.pages.dev`
+# it should be changed later after GUI deploy
+GUI_ROOT = 'https://my-releasator-gui.your-cf-profile.pages.dev'
+
 DB_HOURS_OFFSET = 0 # left with 0 if your db server have correct date and time configuration
 
 # service config is a JSON object
