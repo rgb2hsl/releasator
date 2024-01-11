@@ -11,6 +11,8 @@
         "db:create": "wrangler d1 create RE",
         "db:schema": "wrangler d1 execute RE --file=sql/schema.sql",
         "db:schema:local": "wrangler d1 execute RE --local --file=sql/schema.sql",
+        "db:schema:drop": "wrangler d1 execute RE --file=sql/schema.drop.sql",
+        "db:schema:drop:local": "wrangler d1 execute RE --local --file=sql/schema.drop.sql",
         "db:select:releases": "wrangler d1 execute RE --command \"SELECT id, editHash, queuedTo, postedAt FROM releases\"",
         "db:select:releases:local": "wrangler d1 execute RE --local --command \"SELECT id, editHash, queuedTo, postedAt FROM releases\"",
         "db:delete:releases:local": "wrangler d1 execute RE --local --command \"DELETE FROM releases WHERE queuedTo != '2023-12-21 15:13:42'\"",
