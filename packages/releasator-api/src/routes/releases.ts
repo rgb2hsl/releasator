@@ -26,6 +26,7 @@ import {
     insertReleaseObject,
     updateReleaseObject
 } from "../domains/ReleaseObjectsDomain";
+import {emojize} from "../helpers/emojize";
 
 export class GetQueuedReleases extends OpenAPIRoute<RichRequest> {
     static schema: OpenAPIRouteSchema = {
@@ -242,7 +243,7 @@ export class PostRelease extends OpenAPIRoute<RichRequest> {
 
             const change: ReleaseChange = {
                 pr,
-                title: pr.title,
+                title: emojize(pr.title, processedBody.firstParagraph) + "  " + pr.title,
                 body: processedBody.firstParagraph,
                 demoUrls: processedBody.demoUrls,
                 jiraUrls: processedBody.jiraUrls.map(url => ({
