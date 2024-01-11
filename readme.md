@@ -1,6 +1,6 @@
 # Releasator
 
-_"Revolutinary" changelog notification tool. The name is too long, so I'll be using **Re** instead._
+"Revolutinary" changelog notification tool.
 
 ## How it works
 
@@ -19,7 +19,22 @@ can be configured to display them as Slack mentions.
 Right after the release Relesator will queue the release notes for posting after a set amount of time. During that time
 you have a possibility to edit them, add or delete features or correct smomething, reschedule posting.
 
-## Setting up Pull Requests
+## Setup
+
+Releasator is designed to be deployed within CF workers.
+
+1. Fork this repo
+2. Run `npm run cfg -w packages/releasator-api`.
+   It will create `wrangler.toml` in `packages/releasator-api` folder. Open it and configure accoording to the
+   comments and guides inside. **Its really important, don't skip a single comment line!**
+3. Upload and deploy your worker with `npm run deploy -w packages/releasator-api`
+
+   You can check that everything goes fine by checking logs of a worker — a cronjob should run every minute and tell you
+   that there is no releases queued for posting
+4. Deploy GUI o CF pages
+5. TBD WIP
+
+## Pull Requests rules
 
 1. **PR's title** will be included in the release notes as the feature's header.
    Keep it short yet clear for every person in company.
@@ -59,52 +74,3 @@ This feature added a possible to calculate a sum of cats during interacting with
 This paragraph will not be included in the release notes. And you are totally understand why, if you a good reader. If you're not — please, read the points above one more time.
 
 ***
-
-## Setup
-
-Re is designed to be deployed as CF workers, so some prequirements needed.
-
-Steps to set up:
-
-1. Fork this repo
-2. Edit `packages/releasator-api/wrangler.toml` for your CF Worker:
-    1. Create DB and add `d1_databases` bindings
-    2. Edit `SERVICE_CONFIG`
-3. Upload and deploy your worker with `npm run deploy -w packages/releasator-api`
-4. Add secrets to the deployed worker:
-    1. `AUTH_SUPER_TOKEN` is token you should use with Bearer auth to push releases from GitHub workflow
-    2. `GITHUB_TOKEN` is token allowed to read from repos you wish to push releases from
-    3. `SLACK_ADMIN_CHANNEL_WEBHOOK` is a webhook for posting service previews of release messsages
-    4. `SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK` is the same, but for "production" posting
-5. You can check that everything goes fine by checking logs of a worker — a cronjob should run every minute and tell you
-   that there is no releases queued for posting
-6. Deploy GUI o CF pages
-
-#### D1 Database
-
-Create a database named `RE` with
-
-```bash
-npx wrangler d1 create RE
-```
-
-Wrangler will output a binding needed for your worker like this:
-
-```bash
-[[d1_databases]]
-binding = "DB" # i.e. available in your Worker on env.DB
-database_name = "RE"
-database_id = "%your_unique_id%"
-```
-
-Initialize your DB with a SQL `sql/schema.sql`:
-
-```bash
-npx wrangler d1 execute RE --file=sql/schema.sql
-```
-
-For local initialization use `--local` flag:
-
-```bash
-npx wrangler d1 execute RE --local --file=sql/schema.sql
-```

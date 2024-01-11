@@ -1,0 +1,43 @@
+name = "releasator"
+main = "src/index.ts"
+compatibility_date = "2023-09-22"
+
+[triggers]
+crons = ["* * * * *"] # * * * * * = run every minute
+
+[[d1_databases]]
+binding = "DB"
+database_name = "RE"
+
+# run `npm run db:create -w packages/releasator-api`
+# set the database_id accordingly to the output
+database_id = ""
+
+# DON'T FORGET to initialize your db with `npm run db:schema -w packages/releasator-api`
+# if you are planing to develop locally, use `npm run db:schema:local -w packages/releasator-api` instead.
+# also chack out other "db:" scripts in package.json
+
+[vars]
+# if you are planing to deploy your worker manually, store all secret vars here, it's safe
+# if you're using CI, like GitHub, remove `wrangler.toml` from gitignore and use secrets placeholders to deploy from CI
+# I recommend using GitHub Secrets https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+AUTH_SUPER_TOKEN = '' # provide with a custom token, used by github workflows to send releases from repos
+GITHUB_TOKEN = '' # provide with fine-grained github token allowed to read commits, metadata and pull-requests from target repos
+SLACK_ADMIN_CHANNEL_WEBHOOK = '' # provide with webhook allowed to send messages to targer release notes channel
+SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK = '' # same but for service admins, will post release notes right after creation with and edit link
+
+# non-secret vars below
+GUI_ROOT = '' # url to a deployed relesator GUI
+DB_HOURS_OFFSET = 0 # left with 0 if your db server have correct date and time configuration
+
+# service config is a JSON object
+#   "allowedDemoDomains" - array of strings with domain names, allowed to be in demom links
+#   "knownContributors" - array of objects for mentioning contributors in Slack, each object keys:
+#   -  "githubLogin": contributor's github username
+#   -  "slackUID": Slack member ID (can be copied from profile)
+#   "knownProducts" - array of objects for using product names instead of repo names in release notes, each object keys:
+#   -  "repoString": product repository name (owner/repo format, like "rgb2hsl/releasator")
+#   "notificationServices" - array of services to post release notes, only Slack currently avaiable so left it as is
+#   "notificationDelayMinutes" - when release notes is created, it'll be postponed before posting for this amount of minutes
+SERVICE_CONFIG = '{ "allowedDemoDomains" : [ "google.com" ], "knownContributors": [], "knownProducts": [ { "repoString":"rgb2hsl/releasator", "name":"Releasator" } ], "notificationServices": [ "slack" ], "notificationDelayMinutes": 15 }'
+

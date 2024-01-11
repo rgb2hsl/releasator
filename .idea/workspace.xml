@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="tried to fix eslint but hz">
-      <change afterPath="$PROJECT_DIR$/packages/releasator-api/example.wrangler.toml" afterDir="false" />
+    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="wrangler.toml is now ignored">
+      <change afterPath="$PROJECT_DIR$/packages/releasator-api/example-wrangler.toml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/emojize.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/releasator-api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/helpers/processGHPRBody.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/helpers/processGHPRBody.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/routes/releases.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/routes/releases.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/src/services/slack.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-api/wrangler.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,7 @@
       <updated>1704636758769</updated>
       <workItem from="1704636759880" duration="22481000" />
       <workItem from="1704968356477" duration="380000" />
-      <workItem from="1704968743763" duration="642000" />
+      <workItem from="1704968743763" duration="2932000" />
     </task>
     <task id="LOCAL-00001" summary="readme improvements">
       <option name="closed" value="true" />
@@ -190,7 +190,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704715367252</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="idea">
+      <option name="closed" value="true" />
+      <created>1704969610555</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1704969610555</updated>
+    </task>
+    <task id="LOCAL-00015" summary="wrangler.toml is now ignored">
+      <option name="closed" value="true" />
+      <created>1704969633066</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1704969633066</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +236,8 @@
     <MESSAGE value="opps" />
     <MESSAGE value="proper webpack env handling" />
     <MESSAGE value="tried to fix eslint but hz" />
-    <option name="LAST_COMMIT_MESSAGE" value="tried to fix eslint but hz" />
+    <MESSAGE value="idea" />
+    <MESSAGE value="wrangler.toml is now ignored" />
+    <option name="LAST_COMMIT_MESSAGE" value="wrangler.toml is now ignored" />
   </component>
 </project>

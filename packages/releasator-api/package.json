@@ -7,6 +7,8 @@
         "deploy": "wrangler deploy",
         "dev": "wrangler dev --test-scheduled",
         "start": "wrangler dev",
+        "cfg": "cp example-wrangler.toml wrangler.toml",
+        "db:create": "wrangler d1 create RE",
         "db:schema": "wrangler d1 execute RE --file=sql/schema.sql",
         "db:schema:local": "wrangler d1 execute RE --local --file=sql/schema.sql",
         "db:select:releases": "wrangler d1 execute RE --command \"SELECT id, editHash, queuedTo, postedAt FROM releases\"",
