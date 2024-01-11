@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="getting and puttin already posted releases with edit tokens is forbinned now">
-      <change afterPath="$PROJECT_DIR$/packages/releasator-api/sql/schema.drop.sql" afterDir="false" />
+    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="separate schema from dropping">
+      <change afterPath="$PROJECT_DIR$/packages/releasator-gui/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/releasator-api/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-api/sql/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-gui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-gui/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/wolfe/projects/p2p/releasator/packages/releasator-api/sql",
+    "last_opened_file_path": "/Users/wolfe/projects/p2p/releasator/packages/releasator-gui",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -58,9 +57,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/releasator-gui" />
       <recent name="$PROJECT_DIR$/packages/releasator-api/sql" />
       <recent name="$PROJECT_DIR$/packages/releasator-api" />
-      <recent name="$PROJECT_DIR$/packages/releasator-gui" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -80,7 +79,7 @@
       <updated>1704636758769</updated>
       <workItem from="1704636759880" duration="22481000" />
       <workItem from="1704968356477" duration="380000" />
-      <workItem from="1704968743763" duration="4469000" />
+      <workItem from="1704968743763" duration="4898000" />
     </task>
     <task id="LOCAL-00001" summary="readme improvements">
       <option name="closed" value="true" />
@@ -234,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704973161414</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="separate schema from dropping">
+      <option name="closed" value="true" />
+      <created>1704973830696</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1704973830696</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,6 +277,7 @@
     <MESSAGE value="wrangler.toml deleted" />
     <MESSAGE value="regexps for processing PRs body altered, amojis added" />
     <MESSAGE value="getting and puttin already posted releases with edit tokens is forbinned now" />
-    <option name="LAST_COMMIT_MESSAGE" value="getting and puttin already posted releases with edit tokens is forbinned now" />
+    <MESSAGE value="separate schema from dropping" />
+    <option name="LAST_COMMIT_MESSAGE" value="separate schema from dropping" />
   </component>
 </project>
