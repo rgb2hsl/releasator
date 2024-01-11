@@ -20,12 +20,12 @@ jobs:
       - name: Send POST request
         uses: fjogeleit/http-request-action@master
         with:
-          silent: true
           url: 'https://YOUR-API-ROOT' # change this with your API root url
           method: 'POST'
           timeout: 120000
           contentType: 'application/json'
-          bearerToken: ${{ secrets.RELEASATOR_TOKEN }}
+          maskResponse: true
+          bearerToken: ${{ secrets.RELEASATOR_TOKEN }} # must be the same as API's AUTH_SUPER_TOKEN from wrangler.toml, use GH secrets to store it
           data: >
             {
               "repo": "${{ steps.get_repo.outputs.repo }}",

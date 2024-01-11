@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="deployment fixes etc" />
+    <list default="true" id="1c5906e0-175f-4988-904d-d09ef3a41484" name="Changes" comment="idea">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/releasator-gh-workflow/releasator.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/releasator-gh-workflow/releasator.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +79,7 @@
       <updated>1704636758769</updated>
       <workItem from="1704636759880" duration="22481000" />
       <workItem from="1704968356477" duration="380000" />
-      <workItem from="1704968743763" duration="9889000" />
+      <workItem from="1704968743763" duration="11228000" />
     </task>
     <task id="LOCAL-00001" summary="readme improvements">
       <option name="closed" value="true" />
@@ -270,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704978797344</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="idea">
+      <option name="closed" value="true" />
+      <created>1704980374573</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1704980374573</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,7 +311,6 @@
     <MESSAGE value="opps" />
     <MESSAGE value="proper webpack env handling" />
     <MESSAGE value="tried to fix eslint but hz" />
-    <MESSAGE value="idea" />
     <MESSAGE value="wrangler.toml is now ignored" />
     <MESSAGE value="wrangler.toml example added and readme altered" />
     <MESSAGE value="wrangler.toml deleted" />
@@ -309,6 +319,7 @@
     <MESSAGE value="separate schema from dropping" />
     <MESSAGE value="cfg script in gui" />
     <MESSAGE value="deployment fixes etc" />
-    <option name="LAST_COMMIT_MESSAGE" value="deployment fixes etc" />
+    <MESSAGE value="idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="idea" />
   </component>
 </project>
