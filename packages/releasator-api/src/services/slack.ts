@@ -12,7 +12,7 @@ export function createSlackPayload(release: ReleaseObject, config: Config) {
     release.releaseNotes.changes.forEach(change => {
 
         // titile
-        changesBlocks.push({
+        change.title && changesBlocks.push({
             type: "header",
             text: {
                 type: "plain_text",
@@ -21,7 +21,7 @@ export function createSlackPayload(release: ReleaseObject, config: Config) {
         });
 
         // body
-        changesBlocks.push({
+        change.body && changesBlocks.push({
             type: "section",
             text: {
                 type: "mrkdwn",
@@ -58,19 +58,17 @@ export function createSlackPayload(release: ReleaseObject, config: Config) {
             details = `${details}, issues ${change.jiraUrls.map(ji => `<${ji.url}|${ji.issueId}>`).join(", ")}.`;
         }
 
-        if (demos !== "") {
-            changesBlocks.push({
-                type: "context",
-                elements: [
-                    {
-                        type: "mrkdwn",
-                        text: demos
-                    }
-                ]
-            });
-        }
+        demos && changesBlocks.push({
+            type: "context",
+            elements: [
+                {
+                    type: "mrkdwn",
+                    text: demos
+                }
+            ]
+        });
 
-        changesBlocks.push({
+        details && changesBlocks.push({
             type: "context",
             elements: [
                 {
