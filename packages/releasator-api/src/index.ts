@@ -16,16 +16,13 @@ import {OpenAPIRouter} from "@cloudflare/itty-router-openapi";
 import {withAuth} from "./middlewares/withAuth";
 import {type Env} from "./env";
 import {type RichRequest} from "./types/RichRequest";
-import {createConfig, withConfig} from "./middlewares/withConfig";
+import {withConfig} from "./middlewares/withConfig";
 import {generateEditHash} from "./helpers/generateEditHash";
 import {withParams} from "itty-router";
-import {createSlackPayload, sendSlackNotification} from "./services/slack";
-import {offsetUTCDate} from "./helpers/transformDateFromDB";
-import {UTCDate} from "@date-fns/utc";
-import {getDomainsData} from "./helpers/getDomainsData";
-import {sqliteDate} from "releasator-types";
-import {getQueuedReleaseObjects, updateReleaseObjectPostedAt} from "./domains/ReleaseObjectsDomain";
+import {createSlackReleasePayload} from "./services/slack";
 import {createCors} from "./helpers/createCors";
+import {postingJob} from "./cronjobs/postingJob";
+import {healthcheckJob} from "./cronjobs/healthcheckJob";
 
 
 // Create a new router
@@ -50,12 +47,11 @@ router.get(`/api/test`, async (request: RichRequest, env: Env) => {
 });
 
 router.get(`/api/test/slack-blocks`, async (request: RichRequest) => {
-    return new Response(JSON.stringify(createSlackPayload(await request.json(), request.serviceConfig)), {status: 200});
+    return new Response(JSON.stringify(createSlackReleasePayload(await request.json(), request.serviceConfig)), {status: 200});
 });
 
 // 404 for everything else
 router.all("*", () => new Response("Not Found.", {status: 404}));
-
 
 export default {
     fetch: async (...args: any[]) => await router
@@ -71,50 +67,10 @@ export default {
     // The scheduled handler is invoked at the interval set in our wrangler.toml's
     // [[triggers]] configuration.
     async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
-
-        const {hoursOffset} = getDomainsData(env);
-        const nowWithOffset = offsetUTCDate(new UTCDate(), hoursOffset);
-
-        console.log(`cron invoked at ${sqliteDate(nowWithOffset, "cronjob")}`);
-
-        const configResult = createConfig(env);
-
-        if (!configResult.success || !configResult.data) {
-            console.error('error at cronjob while creating config');
-            return;
-        }
-
-        const config = configResult.data;
-
-        // get releases needs to be posted
-        const releasesToPostResult = await getQueuedReleaseObjects(env);
-
-        if (!releasesToPostResult.success) {
-            console.error("error at cronjob while getQueuedReleaseObjects: ", releasesToPostResult.error);
-            return;
-        }
-
-        if (releasesToPostResult.data.length === 0) {
-            console.info("getQueuedReleaseObjects: no releases queued");
-            return;
-        }
-
-
-        for (const release of releasesToPostResult.data) {
-            if (release) {
-                const results = await sendSlackNotification(release, config, true);
-
-                if (results.successfull?.length !== 0) {
-                    // TODO we considering successfull sent even if something was failed
-                    const result = await updateReleaseObjectPostedAt(release.id, sqliteDate(new UTCDate()), env);
-
-                    if (!result.success) {
-                        console.error(`error at cronjob while trying to set postedAt for release ${release.id}: ${result.error}`);
-                    }
-                }
-            } else {
-                console.error(`getQueuedReleaseObjects: [${releasesToPostResult.data.indexOf(release)}] element of releasesToPostResult.data is null`);
-            }
+        if (event.cron === "* * * * *") {
+            await postingJob(env);
+        } else if (event.cron === "*/60 * * * *") {
+            await healthcheckJob(env);
         }
     }
 };

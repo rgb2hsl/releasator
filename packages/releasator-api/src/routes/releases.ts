@@ -19,7 +19,7 @@ import {
     ReleaseStubSchema,
     TagNameSchema
 } from "releasator-types";
-import {sendSlackNotification} from "../services/slack";
+import {sendSlackReleaseNotification} from "../services/slack";
 import {
     getQueuedReleaseObjects,
     getReleaseObjectById,
@@ -126,7 +126,17 @@ export class PostRelease extends OpenAPIRoute<RichRequest> {
         console.info(`Adding release ${head.name} from repo ${repo}`);
 
         // getting tags
-        const tags = await getTagsList(repo, env);
+        const tagsResponse = await getTagsList(repo, env);
+
+        let tags;
+
+        if (tagsResponse.status === 200 && tagsResponse.data) {
+            tags = tagsResponse.data;
+        } else {
+            const error = `GitHub responded with ${tagsResponse.status} status from getTagsList`;
+            console.error(error);
+            return new Response(error, {status: 500});
+        }
 
         // checking from tag in refs
 
@@ -297,7 +307,7 @@ export class PostRelease extends OpenAPIRoute<RichRequest> {
 
             //  build outputs and send them to services
             if (request.serviceConfig.notificationServices.includes("slack")) {
-                await sendSlackNotification(insertResult.data, request.serviceConfig);
+                await sendSlackReleaseNotification(insertResult.data, request.serviceConfig);
             }
 
             return new Response(JSON.stringify(insertResult.data), {status: 200});

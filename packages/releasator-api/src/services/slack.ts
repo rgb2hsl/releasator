@@ -1,8 +1,34 @@
 import {type Config} from "../config/ConfigSchema";
 import {type ReleaseObject} from "releasator-types";
 import {type KnownBlock} from "@slack/types";
+import {type HealthcheckReport} from "../cronjobs/healthcheckJob";
 
-export function createSlackPayload(release: ReleaseObject, config: Config) {
+export function createSlackHealcheckPayload(healtcheckReport: HealthcheckReport, isPassed: boolean) {
+    const payload: { blocks: KnownBlock[] } = {
+        blocks: [
+            {
+                type: "section",
+                text: {
+                    type: "mrkdwn",
+                    text: isPassed ? "Healthcheck passed" : "Healthcheck FAILED",
+                }
+            }
+        ]
+    };
+
+    for (const he of healtcheckReport) {
+        payload.blocks.push({
+            type: "section",
+            text: {
+                type: "mrkdwn",
+                text: `${he.status === "ok" ? '✅' : '❌'} *${he.title}*\n\n${he.error ?? ''}`
+            }
+        });
+    }
+
+    return payload;
+}
+export function createSlackReleasePayload(release: ReleaseObject, config: Config) {
     const product = config.knownProducts.find(p => p.repoString === release.repo);
     // TODO product website url insertion
     const prepTitle = `*${product ? product.name : release.repo}* ${release.head.name} released 🚀`;
@@ -133,16 +159,16 @@ export function createSlackPayload(release: ReleaseObject, config: Config) {
     return payload;
 }
 
-export async function sendSlackNotification(release: ReleaseObject, config: Config, production?: boolean) {
-    const service = production !== true;
+export async function sendSlackReleaseNotification(release: ReleaseObject, config: Config, production?: boolean): Promise<sendSlackPayloadResult> {
+    const admin = production !== true;
 
     if (!config.slackService) {
         return {error: "Slack service isn't configured"};
     }
 
-    const payload = createSlackPayload(release, config);
+    const payload = createSlackReleasePayload(release, config);
 
-    if (service) {
+    if (admin) {
         payload.blocks.push({
             "type": "divider"
         });
@@ -154,6 +180,15 @@ export async function sendSlackNotification(release: ReleaseObject, config: Conf
                 text: `This will be posted at ${release.queuedTo} UTC. <${config.guiRoot}/release/${release.id}/edit/${release.editHash}|Edit it>.`
             }
         });
+    }
+
+    return await sendSlackPayload(payload, config, admin);
+}
+
+export type sendSlackPayloadResult = Awaited<ReturnType<typeof sendSlackPayload>>;
+export async function sendSlackPayload(payload: {blocks: KnownBlock[]}, config: Config, admin: boolean = true) {
+    if (!config.slackService) {
+        return {error: "Slack service isn't configured"};
     }
 
     const chunks = [];
@@ -168,7 +203,7 @@ export async function sendSlackNotification(release: ReleaseObject, config: Conf
     for (const chunk of chunks) {
         try {
 
-            const response = await fetch(service ? config.slackService.adminChannelWebhook : config.slackService.notificationsChannelWebhook, {
+            const response = await fetch(admin ? config.slackService.adminChannelWebhook : config.slackService.notificationsChannelWebhook, {
                 method: "POST", // Specify the method
                 headers: {
                     "Content-Type": "application/json",

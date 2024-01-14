@@ -12,7 +12,10 @@ import {
     type GhTag
 } from "releasator-types";
 
-export async function getTagsList(repoString: string, env: Env): Promise<GhTag[] | undefined> {
+export async function getTagsList(repoString: string, env: Env): Promise<{
+    data: GhTag[] | undefined;
+    status: number;
+}> {
     if (isValidGitHubRepoString(repoString)) {
         const url = `https://api.github.com/repos/${repoString}/tags?per_page=100`;
 
@@ -26,15 +29,37 @@ export async function getTagsList(repoString: string, env: Env): Promise<GhTag[]
             }
         });
 
-        let result: GhTag[] | undefined;
+        if (response.status === 200) {
+            let result: GhTag[] | undefined;
 
-        try {
-            result = getTagListSchema.parse(await response.json<GhTag[]>());
-        } catch (e) {
-            console.error("getTagsList error", e);
+            try {
+                result = getTagListSchema.parse(await response.json<GhTag[]>());
+            } catch (e) {
+                console.error("getTagsList error", e);
+            }
+
+            if (result) {
+                return {
+                    data: result,
+                    status: 200
+                }
+            } else {
+                return {
+                    data: undefined,
+                    status: 500
+                }
+            }
+        } else {
+            return {
+                data: undefined,
+                status: response.status
+            }
         }
+    }
 
-        if (result) return result;
+    return {
+        data: undefined,
+        status: 500
     }
 }
 
