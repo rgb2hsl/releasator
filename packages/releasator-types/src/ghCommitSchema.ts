@@ -1,6 +1,6 @@
 import {z} from "zod";
-import {GhUserWithLoginSchema} from "./ghUserWithLoginSchema";
-import {GhCommitComitSchema} from "./ghCommitComitSchema";
+import {GhUserWithLoginSchema} from "./ghUserWithLoginSchema.js";
+import {GhCommitComitSchema} from "./ghCommitComitSchema.js";
 
 export const GhCommitSchema = z.object({
     author: GhUserWithLoginSchema,

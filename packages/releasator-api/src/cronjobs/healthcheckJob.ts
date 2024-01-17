@@ -3,7 +3,7 @@ import {createConfig} from "../middlewares/withConfig";
 import {createSlackHealcheckPayload, sendSlackPayload} from "../services/slack";
 import {getTagsList} from "../services/github";
 import {isValidGitHubRepoString} from "../helpers/isValidGitHubRepoString";
-import type {Config} from "../config/ConfigSchema";
+import { type APIConfig } from 'releasator-types';
 
 export type HealthcheckReport = Array<{
     name: string;
@@ -15,7 +15,7 @@ export type HealthcheckReport = Array<{
 // TODO more healthcheck jobs: DB, Slack, etc.
 export async function healthcheckJob(env: Env) {
     const healtcheck: HealthcheckReport = [];
-    let config: Config | undefined;
+    let config: APIConfig | undefined;
 
     const configResult = createConfig(env);
 
@@ -74,7 +74,7 @@ export async function healthcheckJob(env: Env) {
     } else {
         console.error('Healthcheck FAILED');
 
-        if (config && config.notificationServices?.includes("slack") && config.slackService) {
+        if (config?.notificationServices?.includes("slack") && config.slackService) {
             const payload = createSlackHealcheckPayload(healtcheck, isPassed);
             await sendSlackPayload(payload, config, true);
         }

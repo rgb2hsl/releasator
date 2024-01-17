@@ -1,20 +1,17 @@
 import {type Env} from "../env";
 import {error} from "itty-router";
 import {type RichRequest} from "../types/RichRequest";
-import {type Config, ConfigSchema} from "../config/ConfigSchema";
 import {type ZodError} from "zod";
 import {fromZodError} from "zod-validation-error";
+import { type APIConfig, APIConfigSchema } from 'releasator-types';
 
 export function createConfig(env: Env) {
-    let config: Config;
+    let config: APIConfig;
 
     // TODO try catch
     const rawConfigParsed = JSON.parse(env.SERVICE_CONFIG);
 
-    const configParseResult = ConfigSchema.safeParse({
-        ...rawConfigParsed,
-        guiRoot: env.GUI_ROOT
-    });
+    const configParseResult = APIConfigSchema.safeParse(rawConfigParsed);
 
     if (!configParseResult.success) {
         const validationError = fromZodError(configParseResult.error as ZodError);
@@ -34,7 +31,7 @@ export function createConfig(env: Env) {
             notificationsChannelWebhook: env.SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK ?? ""
         };
 
-        const configResult = ConfigSchema.safeParse(config);
+        const configResult = APIConfigSchema.safeParse(config);
 
         if (!configResult.success) {
             const validationError = fromZodError(configResult.error as ZodError);

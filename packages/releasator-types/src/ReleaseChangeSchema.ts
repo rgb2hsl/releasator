@@ -1,6 +1,6 @@
 import {z} from "zod";
 
-import {GhPullRequestSchema} from "./ghPullRequestSchema";
+import {GhPullRequestSchema} from "./ghPullRequestSchema.js";
 
 export const ReleaseChangeSchema = z.object({
     pr: z.optional(GhPullRequestSchema),

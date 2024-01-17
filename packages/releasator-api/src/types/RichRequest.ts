@@ -1,10 +1,11 @@
-import {type Config} from "../config/ConfigSchema";
+import { type APIConfig } from 'releasator-types';
+
 
 export interface RichRequest extends RequestWithConfig {
     token: string | null,
-    serviceConfig: Config,
+    serviceConfig: APIConfig,
 }
 
 export interface RequestWithConfig extends Request {
-    serviceConfig: Config,
+    serviceConfig: APIConfig,
 }

@@ -1,8 +1,8 @@
 import {z} from "zod";
-import {RepoStringSchema} from "./RepoStringSchema";
-import {RefSchema} from "./RefSchema";
-import {ReleaseNotesSchema} from "./ReleaseNotesSchema";
-import {SQLiteDatetime} from "./SQLiteDatetime";
+import {RepoStringSchema} from "./RepoStringSchema.js";
+import {RefSchema} from "./RefSchema.js";
+import {ReleaseNotesSchema} from "./ReleaseNotesSchema.js";
+import {SQLiteDatetime} from "./SQLiteDatetime.js";
 
 export const ReleaseObjectSchema = z.object({
     id: z.string(),

@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {GhUserWithLoginSchema} from "./ghUserWithLoginSchema";
+import {GhUserWithLoginSchema} from "./ghUserWithLoginSchema.js";
 
 export const GhPullRequestSchema = z.object({
     url: z.string().url(),

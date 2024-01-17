@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {TagNameSchema} from "./TagNameSchema";
+import {TagNameSchema} from "./TagNameSchema.js";
 
 export const RefSchema = z.object({
     type: z.union([z.literal("tag"), z.literal("commit")]),

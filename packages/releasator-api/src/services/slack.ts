@@ -1,5 +1,4 @@
-import {type Config} from "../config/ConfigSchema";
-import {type ReleaseObject} from "releasator-types";
+import { type APIConfig, type ReleaseObject } from 'releasator-types';
 import {type KnownBlock} from "@slack/types";
 import {type HealthcheckReport} from "../cronjobs/healthcheckJob";
 
@@ -28,7 +27,7 @@ export function createSlackHealcheckPayload(healtcheckReport: HealthcheckReport,
 
     return payload;
 }
-export function createSlackReleasePayload(release: ReleaseObject, config: Config) {
+export function createSlackReleasePayload(release: ReleaseObject, config: APIConfig) {
     const product = config.knownProducts.find(p => p.repoString === release.repo);
     // TODO product website url insertion
     const prepTitle = `*${product ? product.name : release.repo}* ${release.head.name} released 🚀`;
@@ -159,7 +158,7 @@ export function createSlackReleasePayload(release: ReleaseObject, config: Config
     return payload;
 }
 
-export async function sendSlackReleaseNotification(release: ReleaseObject, config: Config, production?: boolean): Promise<sendSlackPayloadResult> {
+export async function sendSlackReleaseNotification(release: ReleaseObject, config: APIConfig, production?: boolean): Promise<sendSlackPayloadResult> {
     const admin = production !== true;
 
     if (!config.slackService) {
@@ -186,7 +185,7 @@ export async function sendSlackReleaseNotification(release: ReleaseObject, confi
 }
 
 export type sendSlackPayloadResult = Awaited<ReturnType<typeof sendSlackPayload>>;
-export async function sendSlackPayload(payload: {blocks: KnownBlock[]}, config: Config, admin: boolean = true) {
+export async function sendSlackPayload(payload: {blocks: KnownBlock[]}, config: APIConfig, admin: boolean = true) {
     if (!config.slackService) {
         return {error: "Slack service isn't configured"};
     }

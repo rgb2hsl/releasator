@@ -1,6 +1,6 @@
 import {z} from "zod";
-import {RepoStringSchema} from "./RepoStringSchema";
-import {SQLiteDatetime} from "./SQLiteDatetime";
+import {RepoStringSchema} from "./RepoStringSchema.js";
+import {SQLiteDatetime} from "./SQLiteDatetime.js";
 
 export const ReleaseObjectStoredSchema = z.object({
     id: z.string(),

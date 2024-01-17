@@ -1,3 +1,3 @@
-import {type ReleaseObject} from "./ReleaseObject";
+import {type ReleaseObject} from "./ReleaseObject.js";
 
 export type ReleaseObjectToInsert = Omit<ReleaseObject, "id" | "createdAt" | "queuedTo" | "postedAt" | "editHash">
