@@ -17,13 +17,16 @@ export function parseVersionFromTagRef(tagRef: string) {
 export function findPreviousTagName(tagNames: string[], fromTagName: string): string | undefined {
     const currentVersion = parseVersionFromTagRef(fromTagName);
 
-    if (currentVersion.length !== 3) {
+    if (currentVersion.length !== 3 || currentVersion.includes(NaN)) {
         return;
     }
     let sortedVersions;
 
     try {
-        sortedVersions = tagNames.map(t => parseVersionFromTagRef(t)).sort((a, b) => {
+        sortedVersions = tagNames
+        .map(t => parseVersionFromTagRef(t))
+        .filter(v => !v.includes(NaN))
+        .sort((a, b) => {
             if (a.length !== 3 || b.length !== 3) throw new Error();
             for (let i = 0; i < 3; i++) {
                 if (a[i] !== b[i]) return a[i] - b[i];
