@@ -17,6 +17,8 @@ export function parseVersionFromTagRef(tagRef: string) {
 export function findPreviousTagName(tagNames: string[], fromTagName: string): string | undefined {
     const currentVersion = parseVersionFromTagRef(fromTagName);
 
+    console.info(`findPreviousTagName: currentVersion for "${fromTagName}" is `,JSON.stringify(currentVersion));
+
     if (currentVersion.length !== 3 || currentVersion.includes(NaN)) {
         return;
     }
