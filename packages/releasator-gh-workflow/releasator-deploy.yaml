@@ -35,11 +35,11 @@ jobs:
             GITHUB_TOKEN
             SLACK_ADMIN_CHANNEL_WEBHOOK
             SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK
-          env:
-            AUTH_SUPER_TOKEN: ${{ secrets.AUTH_SUPER_TOKEN }}
-            GITHUB_TOKEN: ${{ secrets.RELEASATOR_GITHUB_TOKEN }}
-            SLACK_ADMIN_CHANNEL_WEBHOOK: ${{ secrets.SLACK_ADMIN_CHANNEL_WEBHOOK }}
-            SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK: ${{ secrets.SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK }}
+        env:
+          AUTH_SUPER_TOKEN: ${{ secrets.AUTH_SUPER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASATOR_GITHUB_TOKEN }}
+          SLACK_ADMIN_CHANNEL_WEBHOOK: ${{ secrets.SLACK_ADMIN_CHANNEL_WEBHOOK }}
+          SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK: ${{ secrets.SLACK_NOTIFICATIONS_CHANNEL_WEBHOOK }}
 
       - name: Deploy GUI
         uses: cloudflare/wrangler-action@v3
