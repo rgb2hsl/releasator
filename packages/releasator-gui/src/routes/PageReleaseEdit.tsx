@@ -83,7 +83,7 @@ function Actions(props: {
                     await props.cancel();
                 }}
             >
-                <span style={{marginRight: 10}}>❌</span> Prep for cancel
+                <span style={{marginRight: 10}}>❌</span> Cancellify
             </Button>
         </FlexRow>
     </GroupBox>;
