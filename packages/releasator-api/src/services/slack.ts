@@ -115,6 +115,19 @@ export function createSlackReleasePayload(release: ReleaseObject, config: APICon
         }
     });
 
+    const changesSection: KnownBlock[] = changesBlocks.length ? [
+        {
+            type: "context",
+            elements: [
+                {
+                    type: "mrkdwn",
+                    text: `Changes from version ${release.base.name}:`
+                }
+            ]
+        },
+        ...changesBlocks
+    ] : [];
+
     const payload: { blocks: KnownBlock[] } = {
         blocks: [
             {
@@ -124,17 +137,8 @@ export function createSlackReleasePayload(release: ReleaseObject, config: APICon
                     text: prepTitle
                 }
             },
-            {
-                type: "context",
-                elements: [
-                    {
-                        type: "mrkdwn",
-                        text: `Changes from version ${release.base.name}:`
-                    }
-                ]
-            },
 
-            ...changesBlocks,
+            ...changesSection,
 
             {
                 type: "section",
