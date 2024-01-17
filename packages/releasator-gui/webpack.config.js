@@ -2,8 +2,15 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const fs = require("fs");
 
 module.exports = (env) => {
+    const envFilePath = `./.env${env.production ? "" : ".development"}`;
+
+    if (!fs.existsSync(envFilePath)) {
+        throw new Error(`${envFilePath} is not exists [code: env_not_exists]`);
+    }
+
     return {
         mode: "development",
         devtool: "inline-source-map",
@@ -37,7 +44,7 @@ module.exports = (env) => {
                 ]
             }),
             new Dotenv({
-                path: `./.env${env.production ? "" : ".development"}`
+                path: envFilePath
             })
         ]
     }

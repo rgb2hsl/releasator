@@ -30,7 +30,8 @@
         "build": "webpack --env production",
         "dev": "webpack serve",
         "cfg": "cp .env.example .env",
-        "setup": "wrangler pages project create my-releasator-gui --production-branch=master",
-        "deploy": "npm run build && wrangler pages deploy ./dist --project-name=my-releasator-gui"
+        "setup": "wrangler pages project create $GUI_PROJECT_NAME --production-branch=master",
+        "predeploy": "npm run build",
+        "deploy": "wrangler pages deploy ./dist --project-name=$GUI_PROJECT_NAME --commit-dirty=true"
     }
 }

@@ -2,8 +2,10 @@
     "name": "releasator",
     "version": "0.0.1",
     "private": true,
+    "type": "module",
     "dependencies": {
         "@types/uuid": "^9.0.7",
+        "chalk": "^5.3.0",
         "uuid": "^9.0.1",
         "zod": "^3.22.4",
         "zod-validation-error": "^2.1.0"
@@ -26,10 +28,15 @@
         "stream-browserify": "^3.0.0",
         "typescript": "^5.3.2"
     },
+    "scripts": {
+        "postinstall": "npm run build -w packages/releasator-types",
+        "presetup": "npm i",
+        "setup": "node initialsetup.js"
+    },
     "workspaces": [
+        "packages/releasator-types",
         "packages/releasator-api",
         "packages/releasator-gui",
-        "packages/releasator-types",
         "packages/releasator-gh-workflow"
     ]
 }

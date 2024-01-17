@@ -1,6 +1,6 @@
 import {z} from "zod";
-import {GhCommitComitSchema} from "./ghCommitComitSchema";
-import {GhCommitSchema} from "./ghCommitSchema";
+import {GhCommitComitSchema} from "./ghCommitComitSchema.js";
+import {GhCommitSchema} from "./ghCommitSchema.js";
 
 export const GhCompareSchema = z.object({
     url: z.string().url(),

@@ -1,5 +1,6 @@
 {
     "name": "releasator-types",
+    "type": "module",
     "version": "0.0.1",
     "description": "Releasator validation schemes and types",
     "author": "rgb2hsl",

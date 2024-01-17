@@ -69,7 +69,7 @@ export default {
     async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
         if (event.cron === "* * * * *") {
             await postingJob(env);
-        } else if (event.cron === "*/60 * * * *") {
+        } else if (event.cron === "0 * * * *") {
             await healthcheckJob(env);
         }
     }
