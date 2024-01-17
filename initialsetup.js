@@ -457,6 +457,25 @@ async function main() {
     }
 
     /*
+        Set API root to releasator GitHub Workflow
+     */
+
+    infoOut(`Setting API root url in releasator.yaml (will be used in tracked repos to push releases)...`);
+
+    try {
+        await replaceLines('packages/releasator-gh-workflow/releasator.yaml', [
+            [
+                '          url: \'https://YOUR-API-ROOT\'',
+                `          url: '${deployedAPIroot}' # set by initialsetup.js`
+            ]
+        ])
+    } catch (e) {
+        errorOutAndExit(`Error occurred during setting API root url in releasator.yaml`, e, 105);
+    }
+
+    successOut(`packages/releasator-gh-workflow/releasator.yaml is set with API root url!`);
+
+    /*
         Checking if CF pages needs redeployment...
     */
 
