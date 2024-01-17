@@ -58,20 +58,34 @@ export async function releaseEditLoader({params}: { params: Params<"id" | "hash"
 }
 
 function Actions(props: {
-    save: () => Promise<void>
+    save: () => Promise<void>,
+    cancel: () => Promise<void>
 }) {
     return <GroupBox style={{padding: 20}} label={"Actions"}>
-        <Button
-            size={"lg"}
-            primary={true}
-            variant={"raised"}
-            style={{width: 120}}
-            onClick={async () => {
-                await props.save();
-            }}
-        >
-            <span style={{marginRight: 10}}>💾</span> Save
-        </Button>
+        <FlexRow $gap={20}>
+            <Button
+                size={"lg"}
+                primary={true}
+                variant={"raised"}
+                style={{width: 120}}
+                onClick={async () => {
+                    await props.save();
+                }}
+            >
+                <span style={{marginRight: 10}}>💾</span> Save
+            </Button>
+            <Button
+                size={"lg"}
+                primary={true}
+                variant={"raised"}
+                style={{width: 120}}
+                onClick={async () => {
+                    await props.cancel();
+                }}
+            >
+                <span style={{marginRight: 10}}>❌</span> Prep for cancel
+            </Button>
+        </FlexRow>
     </GroupBox>;
 }
 
@@ -80,6 +94,11 @@ const ReleaseEditor: React.FC<{ releaseObject: ReleaseObject }> = ({releaseObjec
     const [storedQueuedTo, setStoredQueuedTo] = useState(ro.queuedTo);
     const [validationErrors, setValidationErrors] = useState<ValidationError[]>([]);
     const [fetching, setFetching] = useState(false);
+    const cancel = useCallback(async () => {
+        setRo((rod) => {
+            rod.postedAt = rod.createdAt;
+        });
+    }, [setRo]);
     const save = useCallback(async () => {
         setFetching(true);
 
@@ -277,7 +296,7 @@ const ReleaseEditor: React.FC<{ releaseObject: ReleaseObject }> = ({releaseObjec
                                 </FlexCol>
                             </GroupBox>
 
-                            <Actions save={save}/>
+                            <Actions save={save} cancel={cancel}/>
 
                             <GroupBox label="Refs">
                                 <InputGroup>
@@ -489,7 +508,7 @@ const ReleaseEditor: React.FC<{ releaseObject: ReleaseObject }> = ({releaseObjec
                                 + Add Change
                             </Button>
 
-                            <Actions save={save}/>
+                            <Actions save={save} cancel={cancel}/>
 
                             <GroupBox label="Contributors">
                                 <StringsArrayEditor
@@ -509,7 +528,7 @@ const ReleaseEditor: React.FC<{ releaseObject: ReleaseObject }> = ({releaseObjec
                                 />
                             </GroupBox>
 
-                            <Actions save={save}/>
+                            <Actions save={save} cancel={cancel}/>
 
                             {validationErrors.length ? <GroupBox label={"All Errors"}>
                                 <ErrorsDisplay errors={validationErrors}/>

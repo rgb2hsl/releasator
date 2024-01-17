@@ -17,7 +17,6 @@
     },
     "transpileOnly": false,
     "include": [
-        ".eslintrc.js",
         "./initialsetup.js"
     ]
 }
