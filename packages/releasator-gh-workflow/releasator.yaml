@@ -1,4 +1,4 @@
-name: Releasator
+name: Releasator Push
 
 on:
   push:
@@ -9,15 +9,30 @@ jobs:
   sendPostRequest:
     runs-on: ubuntu-latest
     steps:
+      - name: Check Tag Name
+        id: check_tag
+        run: |
+          if [[ "${{ github.ref }}" =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag is valid"
+            echo "TAG_VALID=true" >> $GITHUB_OUTPUT
+          else
+            echo "Tag is not valid"
+            echo "TAG_VALID=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Extract tag name
+        if: steps.check_tag.outputs.TAG_VALID == 'true'
         id: get_tag
-        run: echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+        run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
 
       - name: Extract repo name
+        if: steps.check_tag.outputs.TAG_VALID == 'true'
         id: get_repo
-        run: echo "::set-output name=repo::${GITHUB_REPOSITORY}"
+        run: echo "REPO=${GITHUB_REPOSITORY}" >> $GITHUB_OUTPUT
 
       - name: Send POST request
+        if: steps.check_tag.outputs.tag_valid == 'true'
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://YOUR-API-ROOT' # change this with your API root url
@@ -28,9 +43,9 @@ jobs:
           bearerToken: ${{ secrets.RELEASATOR_TOKEN }} # must be the same as API's AUTH_SUPER_TOKEN from wrangler.toml, use GH secrets to store it
           data: >
             {
-              "repo": "${{ steps.get_repo.outputs.repo }}",
+              "repo": "${{ steps.get_repo.outputs.REPO }}",
               "head": {
                 "type": "tag",
-                "name": "${{ steps.get_tag.outputs.tag }}"
+                "name": "${{ steps.get_tag.outputs.TAG }}"
               }
             }
