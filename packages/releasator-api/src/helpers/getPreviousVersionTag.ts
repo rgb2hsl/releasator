@@ -1,5 +1,5 @@
 export function findVersionPatterns(str: string): string[] {
-    const pattern = /v\d+\.\d+\.\d+/g;
+    const pattern = /^v\d+\.\d+\.\d+$/;
     const matches = str.match(pattern);
     return matches ?? [];
 }
