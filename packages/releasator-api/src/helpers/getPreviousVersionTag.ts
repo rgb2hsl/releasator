@@ -27,15 +27,16 @@ export function findPreviousTagName(tagNames: string[], fromTagName: string): st
     try {
         sortedVersions = tagNames
         .map(t => parseVersionFromTagRef(t))
-        .filter(v => !v.includes(NaN))
+        .filter(v => !v.includes(NaN) && v.length === 3)
         .sort((a, b) => {
-            if (a.length !== 3 || b.length !== 3) throw new Error();
+            if (a.length !== 3 || b.length !== 3) throw new Error('Found incompatible version');
             for (let i = 0; i < 3; i++) {
                 if (a[i] !== b[i]) return a[i] - b[i];
             }
             return 0;
         });
     } catch (e) {
+        console.info(`findPreviousTagName: `, e);
         return;
     }
 
@@ -44,9 +45,7 @@ export function findPreviousTagName(tagNames: string[], fromTagName: string): st
             (sortedVersions[i][0] === currentVersion[0] && sortedVersions[i][1] < currentVersion[1]) ||
             (sortedVersions[i][0] === currentVersion[0] && sortedVersions[i][1] === currentVersion[1] && sortedVersions[i][2] < currentVersion[2])) {
 
-            const prevVersion = `v${sortedVersions[i].join(".")}`;
-
-            return tagNames.find(t => t === prevVersion);
+            return `v${sortedVersions[i].join(".")}`;
         }
     }
 
