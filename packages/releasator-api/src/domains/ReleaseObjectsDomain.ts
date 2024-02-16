@@ -174,16 +174,17 @@ export async function getReleaseObjectById(id: string, env: Env): Promise<{
     success: false;
     error: string;
 }> {
-    const {success, results} = await env.DB.prepare(`
+    const d1Result = await env.DB.prepare(`
         select *
         from releases r
         where r.id = ?
     `).bind(id).run<ReleaseObjectStored>();
     console.info(`getReleaseObjectById called with id ${id}`);
     const {hoursOffset} = getDomainsData(env);
+    console.info(`getDomainsData: got hoursOffset: ${hoursOffset}`);
 
-    if (success && results.length) {
-        const result = ReleaseObjectStoredSchema.safeParse(results[0]);
+    if (d1Result.success && d1Result.results?.length) {
+        const result = ReleaseObjectStoredSchema.safeParse(d1Result.results[0]);
 
         if (result.success) {
             // got stored object, transform to not stored
@@ -225,6 +226,9 @@ export async function getReleaseObjectById(id: string, env: Env): Promise<{
     } else {
         const error = `getReleaseObjectById: failed to find with id ${id}`;
         console.error(error);
+
+        console.error(`d1 result returned is ${JSON.stringify(d1Result)}`);
+
         return {
             success: false,
             error
