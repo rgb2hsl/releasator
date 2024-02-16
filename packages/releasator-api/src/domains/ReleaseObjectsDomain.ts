@@ -95,7 +95,7 @@ export async function getQueuedReleaseObjects(env: Env): Promise<{
         from releases r
         where r.postedAt IS NULL
         and r.queuedTo < datetime('now', 'utc')
-    `).run<ReleaseObjectStored>();
+    `).all<ReleaseObjectStored>();
 
     if (success) {
 
@@ -178,7 +178,7 @@ export async function getReleaseObjectById(id: string, env: Env): Promise<{
         select *
         from releases r
         where r.id = ?
-    `).bind(id).run<ReleaseObjectStored>();
+    `).bind(id).all<ReleaseObjectStored>();
     console.info(`getReleaseObjectById called with id ${id}`);
     const {hoursOffset} = getDomainsData(env);
     console.info(`getDomainsData: got hoursOffset: ${hoursOffset}`);
