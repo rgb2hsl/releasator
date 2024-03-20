@@ -249,8 +249,10 @@ export class PostRelease extends OpenAPIRoute<RichRequest> {
         // now remove all PRs not present in PRIDs
         PRs = PRs.filter(pr => PRIDs.includes(pr.id));
 
-        // generating release notes object
+        // now remove all PRs contains `[SKIP]` in their title
+        PRs = PRs.filter(pr => !pr.title.toLowerCase().trim().includes('[silent]'));
 
+        // generating release notes object
         const changes: ReleaseChange[] = [];
 
         PRs.forEach(pr => {
@@ -343,6 +345,12 @@ export class PutReleaseByIdFromEdit extends OpenAPIRoute<RichRequest> {
             const error = `PutReleaseById: id is undefined`;
             console.error(error);
             return new Response(error, {status: 500});
+        }
+
+        if (id !== data.body.id) {
+            const error = `PutReleaseById: payload id ${data.body.id} is different from request id ${id}`;
+            console.error(error);
+            return new Response(error, {status: 403});
         }
 
         const getResult = await getReleaseObjectById(id, env);
