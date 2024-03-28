@@ -280,6 +280,11 @@ export class PostRelease extends OpenAPIRoute<RichRequest> {
 
         });
 
+        // TODO THIS SHOULD BE CONFIGURABLE
+        if (changes.length === 0) {
+            return new Response(JSON.stringify({success: "success", error: null, message: "empty release notes"}), {status: 200});
+        }
+
         // filtering contributors
         const contributors = [...new Set(contributorsRaw)].filter(c => !c.includes("github"));
 
